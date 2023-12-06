@@ -57,6 +57,21 @@ nav a:hover {
   top: 70%;
   border-radius:2em;
 }
+.title{
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  color:whitesmoke;
+
+}
+.qoute{
+  color:#666;
+  font-size: 1.1rem;
+}
+.bq{
+   transform:translate(100%,12rem) ;
+
+}
 .search-container {
   width: 100%;
   display: grid;
@@ -81,6 +96,41 @@ nav a:hover {
 .search-container button:hover{
   background-color: rgb(222, 116, 10);
   color: black;
+}
+/* autocomplete */
+.autocomplete {
+  position: relative;
+  display: inline-block;
+}
+
+#searchInput {
+  padding: 10px;
+  width: 300px;
+}
+
+#searchResults {
+  list-style: none;
+  padding:0;
+  margin:2.5rem;
+  position: absolute;
+  z-index: 1;
+  background-color:rgb(97, 166, 226);
+  border: 1px solid #140909;
+  border-radius:12px ;
+  max-height: 150px;
+  overflow-y: auto;
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+  left:10px;
+}
+
+#searchResults li {
+  padding: 8px;
+  cursor: pointer;
+}
+
+#searchResults li:hover {
+  background-color:#e37272;
 }
 img {
   display: block;
