@@ -2,6 +2,45 @@
 let result = document.getElementById("result");
 let searchBtn = document.getElementById("search-btn");
 let url = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
+const userinp = document.getElementById("user-inp");
+const searchResults = document.getElementById("searchResults");
+
+function fetchMealData(query) {
+  fetch(url + query)
+    .then((res) => {
+      if (res.ok) return res.json();
+    })
+    .then((data) => {
+      let meals = data.meals || [];
+      displayResults(meals);
+    });
+}
+
+
+function displayResults(results) {
+  searchResults.innerHTML = "";
+  results.forEach((meal) => {
+    const li = document.createElement("li");
+    li.textContent = meal.strMeal;
+    li.addEventListener("click", () => {
+      userinp.value = meal.strMeal;
+      searchResults.innerHTML = "";
+    });
+    searchResults.appendChild(li);
+  });
+}
+
+userinp.addEventListener("input", () => {
+  searchResults.innerHTML = "";
+  if (userinp.value == "") {
+    console.log("2");
+    searchResults.innerHTML = "";
+    console.log(searchResults.innerHTML);
+  } else {
+    const query = userinp.value;
+    fetchMealData(query);
+  }
+});
 
 searchBtn.addEventListener("click", () => {
   let userInp = document.getElementById("user-inp").value;
@@ -53,7 +92,7 @@ searchBtn.addEventListener("click", () => {
         ingredients.forEach((i) => {
           let child = document.createElement("li");
           child.innerText = i;
-          parent.appendChild(child);
+          parent.appendChild(child); 
           ingredientCon.appendChild(parent);
         });
 
@@ -69,3 +108,5 @@ searchBtn.addEventListener("click", () => {
       });
   }
 });
+
+
